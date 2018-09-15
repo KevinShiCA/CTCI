@@ -1,0 +1,31 @@
+{
+  "name": "google-interview-prep",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc src/*.ts --outDir ./dist -t ES6 -m commonjs --rootDir ./",
+    "dijkstra": "npm run build && node ./dist/dijkstra/main.js",
+    "linkedlist": "npm run build && node ./dist/src/linked-list.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "23.3.2",
+    "jest": "23.5.0",
+    "ts-jest": "23.1.4",
+    "tslint": "5.11.0",
+    "tslint-config-airbnb": "5.11.0",
+    "typescript": "3.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "/.*.jest\\.(ts|tsx|js)$"
+  }
+}

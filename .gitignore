@@ -1,0 +1,6 @@
+coverage/
+node_modules/
+dist/
+**/*.js
+**/*.js.map
+.DS_Store

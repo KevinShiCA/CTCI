@@ -1,0 +1,21 @@
+{
+    "extends": "tslint-config-airbnb",
+    "linterOptions": {
+        "exclude": [
+            "dist/**",
+            "node_modules/**",
+            "coverage/**"
+        ]
+    },
+    "rules": {
+        "quotemark": [true, "double"],
+        "no-increment-decrement": false,
+        "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
+        "trailing-comma": false,
+        "max-line-length": [true, 150],
+        "ter-arrow-parens": false,
+        "no-boolean-literal-compare": true,
+        "align": false,
+        "object-shorthand-properties-first": false
+    }
+}
