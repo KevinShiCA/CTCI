@@ -19,6 +19,7 @@ export class HashMap<K extends Hashable, V> {
     this._size = 0;
   }
 
+  /** Adds a new (key, value) entry to the map. */
   put(key: K, value: V) {
     const hashCode = key.hashCode();
     if (!this.map[hashCode]) {
@@ -35,6 +36,7 @@ export class HashMap<K extends Hashable, V> {
     this._size++;
   }
 
+  /** Gets the value associated with a given key. */
   get(key: K) {
     const hashCode = key.hashCode();
     if (!this.map[hashCode]) {
@@ -44,6 +46,7 @@ export class HashMap<K extends Hashable, V> {
     return result ? result.value : undefined;
   }
 
+  /** Removes an entry from the map by key. */
   remove(key: K) {
     const hashCode = key.hashCode();
     if (!this.map[hashCode] || !this.map[hashCode].find(item => item.key.equals(key))) {
@@ -56,10 +59,12 @@ export class HashMap<K extends Hashable, V> {
     }
   }
 
+  /** Check if the map contains a key. */
   containsKey(key: K) {
     return !!this.get(key);
   }
 
+  /** Check if the map contains a value. */
   containsValue(value: V) {
     for (const key in this.map) {
       if (this.map[key].find(item => item.value === value)) {
@@ -69,6 +74,7 @@ export class HashMap<K extends Hashable, V> {
     return false;
   }
 
+  /** List all values in the map. */
   values() {
     let result: V[] = [];
     for (const key in this.map) {
@@ -77,6 +83,7 @@ export class HashMap<K extends Hashable, V> {
     return result;
   }
 
+  /** Clears all entries in the map. */
   clear() {
     this.map = {};
     this._size = 0;

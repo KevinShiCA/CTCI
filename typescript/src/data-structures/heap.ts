@@ -33,6 +33,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     return true;
   }
 
+  /** Removes and returns the root of the heap. */
   removeTop() {
     if (!this.root) {
       throw new Error("Heap is empty");
@@ -97,6 +98,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     return value;
   }
 
+  /** Returns the root of the heap. */
   top() {
     if (!this.root) {
       throw new Error("Heap is empty");
@@ -104,6 +106,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     return this.root.value;
   }
 
+  /** Returns the node where the insert should happen. */
   private getInsertNode() {
     return this.getInsertNodeHelper(this.root);
   }
@@ -118,6 +121,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     return this.getInsertNodeHelper(node.right);
   }
 
+  /** Returns the node that should replace the root following a call to removeTop(). */
   private getRemoveNode() {
     // If this method is called, then the root exists.
     return this.getRemoveNodeHelper(this.root);
@@ -133,6 +137,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     return this.getRemoveNodeHelper(node.left);
   }
 
+  /** Swap a child with its parent. */
   private swap(parent: BinaryTreeNode<T>, child: BinaryTreeNode<T>) {
     const top = parent.parent;
     const sibling = this.getRelationship(parent, child) === BinaryNodeRelationship.LeftChild ?
@@ -180,9 +185,7 @@ export class BinaryHeap<T> extends BinaryTree<T> {
     }
   }
 
-  /**
-   * Lowest priority at the top.
-   */
+  /** Lowest priority at the top. */
   private getPriority(a: BinaryTreeNode<T>, b: BinaryTreeNode<T>) {
     if (this.predicate(a.value, b.value) === 0) {
       throw new Error(`Element already exists in heap: ${a.value}`);

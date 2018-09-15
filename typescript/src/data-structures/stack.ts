@@ -1,12 +1,17 @@
 abstract class Stack<T> {
+  /** Returns the top of the stack. */
   abstract peek(): T;
 
+  /** Adds a value to the top of the stack. */
   abstract push(elem: T): void;
 
+  /** Removes and returns the top of the stack. */
   abstract pop(): T;
 
+  /** Number of elements in the stack. */
   abstract size(): number;
 
+  /** Clear all elements in the stack. */
   abstract clear(): void;
 
   isEmpty() {

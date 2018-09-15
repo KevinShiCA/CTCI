@@ -36,6 +36,7 @@ export class Trie extends NaryTree<string> {
     return false;
   }
 
+  /** Checks if a prefix exists in the trie. */
   validatePrefix(prefix: string) {
     const letterArray = [...prefix];
     let currentNode = this.root;
@@ -49,6 +50,7 @@ export class Trie extends NaryTree<string> {
     return true;
   }
 
+  /** Checks if a word exists in the trie. */
   validateWord(word: string) {
     const letterArray = [...word];
     let currentNode = this.root;
@@ -63,10 +65,12 @@ export class Trie extends NaryTree<string> {
   }
 
   preOrder() {
+    // Remove the first node in the traversal since the root is empty.
     return super.preOrder().slice(1);
   }
 
   postOrder() {
+    // Remove the last node in the traversal since the root is empty.
     return super.postOrder().slice(0, this.size);
   }
 }

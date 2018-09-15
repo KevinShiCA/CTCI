@@ -6,9 +6,6 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     this.predicate = predicate;
   }
 
-  /**
-   * Insert a new value into the tree.
-   */
   insert(elem: T) {
     const toInsert: BinaryTreeNode<T> = { value: elem, parent: undefined, left: undefined, right: undefined };
     if (!this.root) {
@@ -47,9 +44,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     return true;
   }
 
-  /**
-   * Delete a node from the tree.
-   */
+  /** Delete a node from the BST. */
   delete(elem: T) {
     let currentNode = this.root;
     while (currentNode && this.predicate(elem, currentNode.value) !== 0) {
@@ -122,6 +117,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     return true;
   }
 
+  /** Find an element in the BST. */
   search(elem: T) {
     if (!this.root) {
       return false;
@@ -142,9 +138,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     return this.searchHelper(elem, node.right);
   }
 
-  /**
-   * Get the depth of a node in the tree.
-   */
+  /** Get the depth of a node in the BST. */
   depth(elem: T) {
     let d = 0;
     let currentNode = this.root;
@@ -162,9 +156,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     return -1;
   }
 
-  /**
-   * Gets the minimum node in the subtree rooted at a given node.
-   */
+  /** Gets the minimum node in the subtree rooted at a given node. */
   private getMinInSubtree(node: BinaryTreeNode<T>) {
     let currentNode = node;
     while (currentNode.left) {

@@ -14,10 +14,19 @@ export interface NaryTreeNode<T> extends TreeNode<T> {
   children: (NaryTreeNode<T> | DummyEndNode)[];
 }
 
+export enum BinaryNodeRelationship {
+  LeftChild = "left",
+  RightChild = "right",
+  Parent = "parent",
+  None = "none"
+}
+
+/** Used in Trie to signify the end of a word. */
 export type DummyEndNode = {
   nodeType: "dummy"
 };
 
+/** True if x is a dummy node. */
 export const isDummy = (x: any): x is DummyEndNode => x.nodeType && x.nodeType === "dummy";
 
 abstract class Tree<T> {
@@ -27,8 +36,10 @@ abstract class Tree<T> {
     this._size = 0;
   }
 
+  /** Insert a new value into the tree. */
   abstract insert(elem: T): boolean;
 
+  /** Clear all nodes in the tree. */
   abstract clear(): void;
 
   abstract inOrder(): T[];
@@ -37,8 +48,10 @@ abstract class Tree<T> {
 
   abstract postOrder(): T[];
 
+  /** Number of children of a given node. */
   protected abstract numberOfChildren(node: TreeNode<T>): number;
 
+  /** Insert a list of values sequentially. */
   insertAll(elems: T[]) {
     let result = true;
     elems.forEach(elem => {
@@ -52,10 +65,12 @@ abstract class Tree<T> {
     return this.size === 0;
   }
 
+  /** Checks if a given node is the root. */
   protected isRoot(node: TreeNode<T>) {
     return !node.parent;
   }
 
+  /** Checks if a given node is a leaf. */
   protected isLeaf(node: TreeNode<T>) {
     return this.numberOfChildren(node) === 0;
   }
@@ -63,13 +78,6 @@ abstract class Tree<T> {
   get size() {
     return this._size;
   }
-}
-
-export enum BinaryNodeRelationship {
-  LeftChild = "left",
-  RightChild = "right",
-  Parent = "parent",
-  None = "none"
 }
 
 export abstract class BinaryTree<T> extends Tree<T> {
@@ -89,6 +97,7 @@ export abstract class BinaryTree<T> extends Tree<T> {
     return +!!node.left + +!!node.right;
   }
 
+  /** Counts the number of nodes in the subtree rooted at a given node. */
   protected subtreeSize(node: BinaryTreeNode<T>) {
     if (!node) {
       return 0;
@@ -96,9 +105,7 @@ export abstract class BinaryTree<T> extends Tree<T> {
     return 1 + this.subtreeSize(node.left) + this.subtreeSize(node.right);
   }
 
-  /**
-   * Completes the sentence: b is a's _______.
-   */
+  /** Completes the sentence: b is a's _______. */
   protected getRelationship(a: BinaryTreeNode<T>, b: BinaryTreeNode<T>) {
     if (a.left && a.left.value === b.value) {
       return BinaryNodeRelationship.LeftChild;
@@ -175,9 +182,7 @@ export abstract class NaryTree<T> extends Tree<T> {
     return node.children.length;
   }
 
-  /**
-   * In order traversal is not defined for n-ary trees.
-   */
+  /** In order traversal is not defined for n-ary trees. */
   inOrder() {
     return [];
   }

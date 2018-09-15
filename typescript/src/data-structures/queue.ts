@@ -1,12 +1,17 @@
 export abstract class Queue<T> {
+  /** Returns the front of the queue. */
   abstract peek(): T;
 
+  /** Adds a value to the back of the queue. */
   abstract enqueue(value: T): void;
 
+  /** Removes and returns the front of the queue. */
   abstract dequeue(): T;
 
+  /** Number of elements in the queue. */
   abstract size(): number;
 
+  /** Clear all elements in the queue. */
   abstract clear(): void;
 
   isEmpty() {

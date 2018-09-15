@@ -33,6 +33,7 @@ export class LinkedList<T> {
     this._size = 0;
   }
 
+  /** Add a new value to the end of the list. */
   append(value: T) {
     const newNode = new Node<T>(value, this._tail, undefined);
     if (this._size === 0) {
@@ -47,6 +48,7 @@ export class LinkedList<T> {
     this._size++;
   }
 
+  /** Appends a list of items sequentially. */
   appendAll(items: T[] | LinkedList<T>) {
     if (Array.isArray(items)) {
       items.forEach(item => this.append(item));
@@ -55,6 +57,7 @@ export class LinkedList<T> {
     }
   }
 
+  /** Insert a new value at an index. */
   add(value: T, index: number) {
     if (index > this._size || index < 0) {
       throw new Error(`Index out of bounds: ${index}`);
@@ -90,6 +93,7 @@ export class LinkedList<T> {
     this._size++;
   }
 
+  /** Get the value at an index. */
   get(index: number) {
     if (index >= this.size || index < 0) {
       throw new Error(`Index out of bounds: ${index}`);
@@ -103,6 +107,7 @@ export class LinkedList<T> {
     return currentNode.value;
   }
 
+  /** Remove from the list by value. */
   remove(value: T) {
     let currentNode = this.head;
     while (currentNode && currentNode.value !== value) {
@@ -133,6 +138,7 @@ export class LinkedList<T> {
     throw new Error(`Value not found: ${value}`);
   }
 
+  /** Remove from the list by index. */
   removeAt(index: number) {
     if (index >= this.size || index < 0) {
       throw new Error(`Index out of bounds: ${index}`);
@@ -170,6 +176,7 @@ export class LinkedList<T> {
     return value;
   }
 
+  /** Remove all nodes that satisfy a predicate. */
   removeAll(pred: (value: T, index?: number) => boolean) {
     const result: T[] = [];
     this.forEach(value => {
@@ -181,6 +188,7 @@ export class LinkedList<T> {
     return result;
   }
 
+  /** Apply a function to all nodes in the list. */
   forEach(fn: (value: T, index?: number) => any) {
     let currentNode = this.head;
     let index = 0;
@@ -191,6 +199,7 @@ export class LinkedList<T> {
     }
   }
 
+  /** Map the list to an array. */
   mapToArray(fn: (value: T, index?: number) => any) {
     const result: any[] = [];
     let currentNode = this.head;
@@ -203,6 +212,7 @@ export class LinkedList<T> {
     return result;
   }
 
+  /** Map the list to a linked list. */
   mapToLinkedList(fn: (value: T, index?: number) => any) {
     const result = new LinkedList<any>();
     let currentNode = this.head;
@@ -215,6 +225,7 @@ export class LinkedList<T> {
     return result;
   }
 
+  /** Filter the list by predicate to an array. */
   filterToArray(pred: (value: T, index?: number) => boolean) {
     const result: T[] = [];
     this.forEach((value, index) => {
@@ -225,6 +236,7 @@ export class LinkedList<T> {
     return result;
   }
 
+  /** Filter the list by predicate to a linked list. */
   filterToLinkedList(pred: (value: T, index?: number) => boolean) {
     const result = new LinkedList<T>();
     this.forEach((value, index) => {
@@ -235,6 +247,7 @@ export class LinkedList<T> {
     return result;
   }
 
+  /** Find the first occurence of a value that satisfies a predicate. */
   find(pred: (value: T, index?: number) => boolean) {
     const filtered = this.filterToArray(pred);
     if (filtered.length === 0) {
@@ -243,10 +256,12 @@ export class LinkedList<T> {
     return filtered[0];
   }
 
+  /** Check if the list contains a value. */
   contains(target: T) {
     return this.indexOf(target) > -1;
   }
 
+  /** Returns the index of a value, -1 if the value is not in the list. */
   indexOf(value: T) {
     let currentNode = this._head;
     let index = 0;
@@ -262,6 +277,7 @@ export class LinkedList<T> {
     return -1;
   }
 
+  /** Clears all nodes in the list. */
   clear() {
     this._head = undefined;
     this._tail = undefined;
