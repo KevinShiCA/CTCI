@@ -25,13 +25,16 @@ export function isUniqueBits(str: string) {
   if (str.length > 26) {
     return false;
   }
+  // Substitute the charMap from the previous solution with a bit vector, represented by an int.
   let bitVector = 0; // 32 bit in JavaScript.
   for (let i = 0; i < str.length; i++) {
-    const val = str.charCodeAt(i) - "a".charCodeAt(0);
-    if ((bitVector & (1 << val)) > 0) {
+    // Subtract by "a" ASCII code to get a value between 0 and 25.
+    const n = str.charCodeAt(i) - "a".charCodeAt(0);
+    // 1 << n creates a bit vector where the only 1 bit is the nth bit.
+    if ((bitVector & (1 << n)) > 0) { // This can only happen if the nth bit is set in the vector.
       return false;
     }
-    bitVector = bitVector | (1 << val);
+    bitVector = bitVector | (1 << n); // Set the nth bit in the vector.
   }
   return true;
 }
