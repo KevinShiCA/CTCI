@@ -4,6 +4,7 @@ import {
   isPermutation,
   urlify,
   isPermutationOfPalindrome,
+  isPermutationOfPalindromBits,
   oneEditAway,
   rotateMatrix,
   compressString,
@@ -63,12 +64,15 @@ describe("Chapter 1: Arrays and Strings", () => {
   it("should check if a string is a permutation of a palindrome", () => {
     let str = "Abc D CBA";
     expect(isPermutationOfPalindrome(str)).toBeTruthy();
+    expect(isPermutationOfPalindromBits(str)).toBeTruthy();
 
     str = "abcdcbaa";
     expect(isPermutationOfPalindrome(str)).toBeFalsy();
+    expect(isPermutationOfPalindromBits(str)).toBeFalsy();
 
     str = "abcdefg";
     expect(isPermutationOfPalindrome(str)).toBeFalsy();
+    expect(isPermutationOfPalindromBits(str)).toBeFalsy();
   });
 
   // 1.5 One Edit Away

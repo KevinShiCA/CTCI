@@ -101,7 +101,7 @@ export function urlify(url: string[], trueLength: number) {
  * Assume that only letters of the english alphabet will be used.
  */
 
-/** Time: O(n). Space: O(n), arguably O(1) since the map cannot contain more than 26 entries. */
+/** Time: O(n). Space: O(n). */
 export function isPermutationOfPalindrome(str: string) {
   const normalized = str.toLowerCase();
   // A palindrome with an even number of letters must have no letters with odd frequencies.
@@ -121,6 +121,25 @@ export function isPermutationOfPalindrome(str: string) {
     }
   });
   return countOdd <= 1;
+}
+
+/** Time: O(n). Space: O(1). */
+export function isPermutationOfPalindromBits(str: string) {
+  const normalized = str.toLowerCase();
+  // Substitute the frequency map from the previous solution with a bit vector.
+  let bitVector = 0;
+  // Toggle the nth bit in a bit vector.
+  const toggleBit = (vector: number, n: number) => {
+    if ((vector & (1 << n)) === 0) { // The nth bit is not set.
+      return vector | (1 << n); // Set the nth bit.
+    }
+    return vector & ~(1 << n); // Unset the nth bit.
+  };
+  [...normalized].forEach(letter => {
+    bitVector = toggleBit(bitVector, letter.charCodeAt(0));
+  });
+  // There can be at most one set bit if the string is a palindrome permutation.
+  return bitVector === 0 || (bitVector & (bitVector - 1)) === 0;
 }
 
 /**
