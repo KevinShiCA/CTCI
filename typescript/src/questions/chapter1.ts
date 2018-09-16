@@ -136,7 +136,7 @@ export function isPermutationOfPalindromBits(str: string) {
     return vector & ~(1 << n); // Unset the nth bit.
   };
   [...normalized].forEach(letter => {
-    bitVector = toggleBit(bitVector, letter.charCodeAt(0));
+    bitVector = toggleBit(bitVector, letter.charCodeAt(0) - "a".charCodeAt(0));
   });
   // There can be at most one set bit if the string is a palindrome permutation.
   return bitVector === 0 || (bitVector & (bitVector - 1)) === 0;

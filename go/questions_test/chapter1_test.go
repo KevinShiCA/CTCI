@@ -47,10 +47,13 @@ func TestChapter1(t *testing.T) {
 	// 1.4 Palindrome Permutation
 	str := "Abc D CBA"
 	testBoolean(questions.IsPermutationOfPalindrome(str), true, t)
+	testBoolean(questions.IsPermutationOfPalindromeBits(str), true, t)
 	str = "abcdcbaa"
 	testBoolean(questions.IsPermutationOfPalindrome(str), false, t)
+	testBoolean(questions.IsPermutationOfPalindromeBits(str), false, t)
 	str = "abcdefg"
 	testBoolean(questions.IsPermutationOfPalindrome(str), false, t)
+	testBoolean(questions.IsPermutationOfPalindromeBits(str), false, t)
 
 	// 1.5 One Edit Away
 	str1 = "pale"

@@ -88,7 +88,7 @@ func URLify(url []rune, trueLength int) {
 }
 
 // IsPermutationOfPalindrome returns true if the string is the permutation of a palindrome.
-// Time: O(n). Space: O(n), arguably O(1) since the map cannot contain more than 26 entries.
+// Time: O(n). Space: O(n).
 func IsPermutationOfPalindrome(str string) bool {
 	normalized := strings.ToLower(str)
 	// A palindrome with an even number of letters must have no letters with odd frequencies.
@@ -105,6 +105,26 @@ func IsPermutationOfPalindrome(str string) bool {
 		}
 	}
 	return countOdd <= 1
+}
+
+// IsPermutationOfPalindromeBits implements the above solution using a bit vector.
+// Time: O(n). Space: O(1).
+func IsPermutationOfPalindromeBits(str string) bool {
+	normalized := strings.ToLower(str)
+	// Substitute the frequency map from the previous solution with a bit vector.
+	bitVector := 0
+	// Toggle the nth bit in a bit vector.
+	toggleBit := func(vector int, n uint) int {
+		if (vector & (1 << n)) == 0 { // The nth bit is not set.
+			return vector | (1 << n) // Set the nth bit.
+		}
+		return vector & ^(1 << n) // Unset the nth bit.
+	}
+	for _, char := range normalized {
+		bitVector = toggleBit(bitVector, uint(char)-uint('a'))
+	}
+	// There can be at most one set bit if the string is a palindrome permutation.
+	return (bitVector == 0) || ((bitVector & (bitVector - 1)) == 0)
 }
 
 // OneEditAway returns true if one string is one character edit away from another.
