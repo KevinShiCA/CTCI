@@ -19,3 +19,8 @@ This codebase is meant to be used with VS Code.
 
 ## Running Go Tests
 Run unit tests by opening the command palette and running `task Go unit tests`
+
+# Assumptions
+All algorithms include time and space complexity analysis. These values make the following assumptions:
+1. String concatenation time complexity for JavaScript and Go are O(n).
+2. JavaScript objects and Go maps are implemented in a way similar to hash tables. That is, they support (key, value) pair storage with average O(1) time complexity for searching, insertion, and deletion. A hashmap implementation is provided for educational purposes but these built in data structures are used for simplicity.
