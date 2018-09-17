@@ -1,5 +1,5 @@
-class Node<T> {
-  constructor(private _value: T, private _prev: Node<T>, private _next: Node<T>) {}
+export class LinkedListNode<T> {
+  constructor(private _value: T, private _prev: LinkedListNode<T>, private _next: LinkedListNode<T>) {}
 
   get value() {
     return this._value;
@@ -13,18 +13,22 @@ class Node<T> {
     return this._next;
   }
 
-  set prev(_prev: Node<T>) {
+  set value(_value: T) {
+    this._value = _value;
+  }
+
+  set prev(_prev: LinkedListNode<T>) {
     this._prev = _prev;
   }
 
-  set next(_next: Node<T>) {
+  set next(_next: LinkedListNode<T>) {
     this._next = _next;
   }
 }
 
 export class LinkedList<T> {
-  private _head: Node<T>;
-  private _tail: Node<T>;
+  protected _head: LinkedListNode<T>;
+  private _tail: LinkedListNode<T>;
   private _size: number;
 
   constructor() {
@@ -35,7 +39,7 @@ export class LinkedList<T> {
 
   /** Add a new value to the end of the list. */
   append(value: T) {
-    const newNode = new Node<T>(value, this._tail, undefined);
+    const newNode = new LinkedListNode<T>(value, this._tail, undefined);
     if (this._size === 0) {
       this._head = newNode;
       this._tail = newNode;
@@ -66,7 +70,7 @@ export class LinkedList<T> {
       return this.append(value);
     }
 
-    const newNode = new Node<T>(value, undefined, undefined);
+    const newNode = new LinkedListNode<T>(value, undefined, undefined);
     if (index === 0) {
       newNode.next = this.head;
       this._head = newNode;

@@ -17,6 +17,7 @@
         "no-boolean-literal-compare": true,
         "align": false,
         "object-shorthand-properties-first": false,
-        "prefer-array-literal": false
+        "prefer-array-literal": false,
+        "one-variable-per-declaration": false
     }
 }

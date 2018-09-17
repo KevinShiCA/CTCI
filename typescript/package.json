@@ -26,6 +26,9 @@
     "transform": {
       "\\.(ts|tsx)$": "ts-jest"
     },
-    "testRegex": "/.*.jest\\.(ts|tsx|js)$"
+    "testRegex": "/.*.jest\\.(ts|tsx|js)$",
+    "modulePaths": [
+      "./src/data-structures/"
+    ]
   }
 }
