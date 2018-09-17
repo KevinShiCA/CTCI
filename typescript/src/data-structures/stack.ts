@@ -1,4 +1,4 @@
-abstract class Stack<T> {
+export abstract class Stack<T> {
   /** Returns the top of the stack. */
   abstract peek(): T;
 
@@ -54,14 +54,14 @@ export class ArrayStack<T> extends Stack<T> {
   }
 }
 
-interface StackNode<T> {
+export interface StackNode<T> {
   value: T;
   next: StackNode<T>;
 }
 
 export class LinkedStack<T> extends Stack<T> {
   protected top: StackNode<T>;
-  private _size: number;
+  protected _size: number;
 
   constructor() {
     super();

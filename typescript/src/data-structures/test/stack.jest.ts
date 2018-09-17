@@ -1,6 +1,10 @@
 import { ArrayStack, LinkedStack } from "../stack";
 
-class TestArrayStack<T> extends ArrayStack<T> {
+export class TestArrayStack<T> extends ArrayStack<T> {
+  pushAll(elems: T[]) {
+    elems.forEach(elem => this.push(elem));
+  }
+
   toArray() {
     return this.elems;
   }
