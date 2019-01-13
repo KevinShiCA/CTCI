@@ -11,6 +11,9 @@ This codebase is meant to be used with VS Code.
 * yarn 1.7.x
 * Jest 22.0.0+
 * Go 1.10.x
+* Ruby 2.4.0
+* rspec 3.8
+* Bundler 2.0.x
 
 ## Running TypeScript Tests
 1. Install dependencies by opening the command palette (Ctrl/Cmd + P) and running `task Install TypeScript dependencies`
@@ -19,6 +22,11 @@ This codebase is meant to be used with VS Code.
 
 ## Running Go Tests
 Run unit tests by opening the command palette and running `task Go unit tests`
+
+## Running Ruby Tests
+1. Install dependencies by opening the command palette (Ctrl/Cmd + P) and running `task Install Ruby dependencies`
+2. Run unit tests by opening the command palette and running `task Ruby unit tests`
+3. Coverage results will appear in the terminal
 
 # Assumptions
 All algorithms include time and space complexity analysis. These values make the following assumptions:

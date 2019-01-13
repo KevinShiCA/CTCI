@@ -27,11 +27,32 @@
             "problemMatcher": []
         },
         {
+            "label": "Ruby unit tests",
+            "options": {
+                "cwd": "${workspaceFolder}/ruby "
+            },
+            "command": "rspec",
+            "args": [
+                "--pattern",
+                "src/spec/*_spec.rb"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "Install TypeScript dependencies",
             "options": {
                 "cwd": "${workspaceFolder}/typescript"
             },
             "command": "yarn",
+            "problemMatcher": []
+        },
+        {
+            "label": "Install Ruby dependencies",
+            "options": {
+                "cwd": "${workspaceFolder}/ruby"
+            },
+            "command": "bundle",
+            "args": ["install"],
             "problemMatcher": []
         },
         {
