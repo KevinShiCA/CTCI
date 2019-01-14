@@ -1,17 +1,17 @@
 interface TreeNode<T> {
   value: T;
-  parent: TreeNode<T>;
+  parent?: TreeNode<T>;
 }
 
 export interface BinaryTreeNode<T> extends TreeNode<T> {
-  parent: BinaryTreeNode<T>;
-  left: BinaryTreeNode<T>;
-  right: BinaryTreeNode<T>;
+  parent?: BinaryTreeNode<T>;
+  left?: BinaryTreeNode<T>;
+  right?: BinaryTreeNode<T>;
 }
 
 export interface NaryTreeNode<T> extends TreeNode<T> {
   parent: NaryTreeNode<T>;
-  children: (NaryTreeNode<T> | DummyEndNode)[];
+  children?: (NaryTreeNode<T> | DummyEndNode)[];
 }
 
 export enum BinaryNodeRelationship {

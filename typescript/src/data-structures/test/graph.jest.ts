@@ -2,7 +2,7 @@ import { DirectedWeightedAdjacencyMatrix, DirectedWeightedAdjacencyList } from "
 import { Serializable, Graph } from "../graph";
 import { WeightedAdjacencyMatrix, WeightedAdjacencyList } from "../graph-weighted";
 
-class Foo extends Serializable {
+export class Foo extends Serializable {
   constructor(private _value: string) {
     super();
   }
@@ -16,13 +16,13 @@ class Foo extends Serializable {
   }
 }
 
-function generateFoo(str: string): { [index: string]: Foo } {
+export function generateFoo(str: string): { [index: string]: Foo } {
   const result: { [index: string]: Foo } = {};
   str.split("").forEach(vertex => result[vertex] = new Foo(vertex));
   return result;
 }
 
-const vertices = generateFoo("abcdefg");
+export const vertices = generateFoo("abcdefg");
 
 enum GraphType {
   Matrix = "matrix",
@@ -38,7 +38,7 @@ enum GraphType {
  * f: {b, 11}, {d, 10}
  * g: {a, 3}, {b, 3}, {e, 6}
  */
-function resetToGraphA(graph: Graph<Foo>) {
+export function resetToGraphA(graph: Graph<Foo>) {
   graph.clear();
   graph.addAllVertices(Object.values(vertices));
   graph.addEdge("a", "c", 10);

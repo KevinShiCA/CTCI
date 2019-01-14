@@ -30,6 +30,12 @@ export class DirectedWeightedAdjacencyMatrix<T extends Serializable> extends Wei
   }
 }
 
+export class DirectedAdjacencyMatrix<T extends Serializable> extends DirectedWeightedAdjacencyMatrix<T> {
+  addEdge(fromId: string, toId: string) {
+    return super.addEdge(fromId, toId, 0);
+  }
+}
+
 export class DirectedWeightedAdjacencyList<T extends Serializable> extends WeightedAdjacencyList<T> {
   addEdge(fromId: string, toId: string, weight: number) {
     if (!this.list[fromId] || !this.list[toId]) {
@@ -50,5 +56,11 @@ export class DirectedWeightedAdjacencyList<T extends Serializable> extends Weigh
     }
     this.edges.splice(this.edges.findIndex(edge => edge.vertices[0] === fromId && edge.vertices[1] === toId), 1);
     return true;
+  }
+}
+
+export class DirectedAdjacencyList<T extends Serializable> extends DirectedWeightedAdjacencyList<T> {
+  addEdge(fromId: string, toId: string) {
+    return super.addEdge(fromId, toId, 0);
   }
 }
