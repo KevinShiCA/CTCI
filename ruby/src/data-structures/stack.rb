@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-EMPTY_STACK_EXCEPTION = 'Stack is empty'.freeze
+EMPTY_STACK_EXCEPTION = 'Stack is empty'
 
 module DataStructures
   class ArrayStack

@@ -32,3 +32,6 @@ end
 
 queue = DataStructures::ArrayQueue.new
 test_queue(queue, 'Array Queue')
+
+queue = DataStructures::LinkedQueue.new
+test_queue(queue, 'Linked Queue')
