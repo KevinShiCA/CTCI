@@ -29,7 +29,7 @@
         {
             "label": "Ruby unit tests",
             "options": {
-                "cwd": "${workspaceFolder}/ruby "
+                "cwd": "${workspaceFolder}/ruby"
             },
             "command": "rspec",
             "args": [
