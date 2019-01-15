@@ -1,7 +1,10 @@
 import { Queue, QueueNode } from "./queue";
 
 export abstract class PriorityQueue<T> extends Queue<T> {
-  /** Priority goes low to high. */
+  /**
+   * Priority goes high to low.
+   * If predicate(a, b) = 1, then a has a higher priority than b.
+   */
   protected predicate: (a: T, b: T) => 1 | 0 | -1;
 
   constructor(predicate: (a: T, b: T) => 1 | 0 | -1) {
@@ -27,7 +30,7 @@ export class ArrayPriorityQueue<T> extends PriorityQueue<T> {
 
   enqueue(elem: T) {
     this.elems.push(elem);
-    this.elems.sort(this.predicate);
+    this.elems = this.elems.sort(this.predicate).reverse();
   }
 
   dequeue() {
@@ -76,7 +79,7 @@ export class LinkedPriorityQueue<T> extends PriorityQueue<T> {
     }
 
     if (this.size() === 1) {
-      if (this.predicate(value, this.head.value) <= 0) {
+      if (this.predicate(value, this.head.value) >= 0) {
         node.next = this.head;
         this.head = node;
       } else {
@@ -86,7 +89,7 @@ export class LinkedPriorityQueue<T> extends PriorityQueue<T> {
       return;
     }
 
-    if (this.predicate(value, this.head.value) <= 0) {
+    if (this.predicate(value, this.head.value) >= 0) {
       node.next = this.head;
       this.head = node;
       this._size++;
@@ -96,15 +99,14 @@ export class LinkedPriorityQueue<T> extends PriorityQueue<T> {
     let previousNode = this.head;
     let currentNode = this.head.next;
     while (currentNode) {
-      if (this.predicate(currentNode.value, value) <= 0) {
+      if (this.predicate(value, currentNode.value) >= 0) {
         break;
       }
       previousNode = currentNode;
       currentNode = currentNode.next;
     }
-    const after = previousNode.next;
+    node.next = currentNode;
     previousNode.next = node;
-    node.next = after;
     this._size++;
   }
 

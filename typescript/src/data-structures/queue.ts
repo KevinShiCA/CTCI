@@ -14,6 +14,10 @@ export abstract class Queue<T> {
   /** Clear all elements in the queue. */
   abstract clear(): void;
 
+  toArray() {
+    /** Does nothing by default. */
+  }
+
   isEmpty() {
     return this.size() === 0;
   }
