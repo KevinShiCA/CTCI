@@ -89,13 +89,13 @@ describe("Linked List", () => {
     expect(ll.filterToLinkedList(value => value % 2 !== 0).toArray()).toEqual([1, 3, 5, 7, 9]);
   });
 
-  it("should find a value by a predicate correctly", () => {
+  it("should find a value by predicate correctly", () => {
     ll.appendAll([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     expect(ll.find(value => value % 2 === 0)).toBe(2);
     expect(ll.find(value => value > 10)).toBeUndefined();
   });
 
-  it("should append multiple items correctly", () => {
+  it("should append arrays and linked lists correctly", () => {
     ll.appendAll([1, 2, 3]);
     expect(ll.size).toBe(3);
 
@@ -118,8 +118,8 @@ describe("Linked List", () => {
     expect(ll.toArray()).toEqual([2, 3, 4, 5]);
     ll.remove(5);
     expect(ll.toArray()).toEqual([2, 3, 4]);
-
     ll.clear();
+
     ll.appendAll([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     ll.removeAll(value => value % 2 === 0);
     expect(ll.toArray()).toEqual([1, 3, 5, 7, 9]);

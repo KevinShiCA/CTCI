@@ -54,11 +54,7 @@ export class LinkedList<T> {
 
   /** Appends a list of items sequentially. */
   appendAll(items: T[] | LinkedList<T>) {
-    if (Array.isArray(items)) {
-      items.forEach(item => this.append(item));
-    } else {
-      items.forEach(item => this.append(item));
-    }
+    items.forEach(item => this.append(item));
   }
 
   /** Insert a new value at an index. */
@@ -111,7 +107,7 @@ export class LinkedList<T> {
     return currentNode.value;
   }
 
-  /** Remove from the list by value. */
+  /** Remove from the list by value (first occurence). */
   remove(value: T) {
     let currentNode = this.head;
     while (currentNode && currentNode.value !== value) {
@@ -124,7 +120,7 @@ export class LinkedList<T> {
           this.head.prev = undefined;
         }
         this._size--;
-        return value;
+        return;
       }
       if (currentNode === this.tail) {
         this._tail = this.tail.prev;
@@ -132,12 +128,12 @@ export class LinkedList<T> {
           this.tail.next = undefined;
         }
         this._size--;
-        return value;
+        return;
       }
       currentNode.prev.next = currentNode.next;
       currentNode.next.prev = currentNode.prev;
       this._size--;
-      return value;
+      return;
     }
     throw new Error(`Value not found: ${value}`);
   }
@@ -180,7 +176,7 @@ export class LinkedList<T> {
     return value;
   }
 
-  /** Remove all nodes that satisfy a predicate. */
+  /** Remove and return as a list all nodes that satisfy a predicate. */
   removeAll(pred: (value: T, index?: number) => boolean) {
     const result: T[] = [];
     this.forEach(value => {
@@ -265,13 +261,13 @@ export class LinkedList<T> {
     return this.indexOf(target) > -1;
   }
 
-  /** Returns the index of a value, -1 if the value is not in the list. */
-  indexOf(value: T) {
+  /** Returns the index of the first occurence of a value, -1 if the value is not in the list. */
+  indexOf(target: T) {
     let currentNode = this._head;
     let index = 0;
 
     while (currentNode) {
-      if (currentNode.value === value) {
+      if (currentNode.value === target) {
         return index;
       }
       currentNode = currentNode.next;
@@ -306,8 +302,7 @@ export class LinkedList<T> {
     let str = "";
     let currentNode = this.head;
     while (currentNode.next) {
-      str += `${currentNode.value}`;
-      str += " -> ";
+      str += `${currentNode.value} -> `;
       currentNode = currentNode.next;
     }
     str += currentNode.value;

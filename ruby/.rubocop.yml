@@ -10,3 +10,9 @@ Metrics/PerceivedComplexity:
   Max: 10
 UncommunicativeMethodParamName:
   Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
