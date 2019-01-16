@@ -62,13 +62,11 @@ export class BinaryHeap<T> extends BinaryTree<T> {
       const leftPriority = this.getPriority(currentNode.left, currentNode);
       const rightPriority = currentNode.right ? this.getPriority(currentNode.right, currentNode) : undefined;
 
-      if (rightPriority === undefined) { // There is only a left child (left child).
-        if (leftPriority < 0) {
-          this.swap(currentNode, currentNode.left);
-          didSwap = true;
-        } else {
+      if (rightPriority === undefined) { // There is only a left child.
+        if (leftPriority >= 0) {
           break;
         }
+        this.swap(currentNode, currentNode.left);
       } else { // Both children exist.
         if (this.getPriority(currentNode, currentNode.left) < 0 && this.getPriority(currentNode, currentNode.right) < 0) {
           // Node is in the correct position.
@@ -76,15 +74,12 @@ export class BinaryHeap<T> extends BinaryTree<T> {
         }
         // Otherwise, keep bubbling.
         const leftRightPriority = this.getPriority(currentNode.left, currentNode.right);
-        if (leftRightPriority < 0) { // Left is smaller, so bubble left.
-          this.swap(currentNode, currentNode.left);
-        } else {
-          this.swap(currentNode, currentNode.right);
-        }
-        didSwap = true;
+        // Bubble towards the smaller priority.
+        this.swap(currentNode, leftRightPriority < 0 ? currentNode.left : currentNode.right);
       }
+      didSwap = true;
     }
-    // New root was immediately placed in the right position, swap pointers manually.
+    // New root was immediately placed in the correct position, swap pointers manually.
     // This can only occur when deleting from a heap of size 3 (resulting in size 2).
     if (!didSwap) {
       this.root = newRoot;
