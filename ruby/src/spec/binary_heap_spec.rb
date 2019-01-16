@@ -69,38 +69,52 @@ describe 'Min Binary Heap' do
 end
 
 describe 'Max Binary Heap' do
-  heap = DataStructures::BinaryHeap.new(DataStructures::BinaryHeapType::MAX, predicate)
+  before :each do
+    @heap = DataStructures::BinaryHeap.new(DataStructures::BinaryHeapType::MAX, predicate)
+  end
+
+  after :each do
+    @heap = nil
+  end
 
   it 'should insert elements and remove top correctly' do
     # Basic insertion, no bubbling
-    heap.insert_all([8, 7, 5, 2, -1])
-    expect(heap.top).to eq 8
-    expect(heap.remove_top).to eq 8
-    expect(heap.size).to eq 4
-    expect(heap.top).to eq 7
-    expect(heap.remove_top).to eq 7
-    expect(heap.size).to eq 3
-    heap.clear
-    expect(heap.empty?).to be true
+    @heap.insert_all([8, 7, 5, 2, -1])
+    expect(@heap.top).to eq 8
+    expect(@heap.remove_top).to eq 8
+    expect(@heap.size).to eq 4
+    expect(@heap.top).to eq 7
+    expect(@heap.remove_top).to eq 7
+    expect(@heap.size).to eq 3
+    @heap.clear
+    expect(@heap.empty?).to be true
 
     # Complex insertion, lots of bubbling.
-    heap.insert_all([5, 2, 9, -1, -2, 10, -10, 30, 3])
-    expect(heap.remove_top).to eq 30
-    expect(heap.remove_top).to eq 10
-    expect(heap.remove_top).to eq 9
-    expect(heap.remove_top).to eq 5
-    expect(heap.remove_top).to eq 3
-    expect(heap.remove_top).to eq 2
-    expect(heap.remove_top).to eq(-1)
-    expect(heap.remove_top).to eq(-2)
-    expect(heap.remove_top).to eq(-10)
-    expect(heap.empty?).to be true
-    expect { heap.top }.to raise_error 'Heap is empty'
-    expect { heap.remove_top }.to raise_error 'Heap is empty'
+    @heap.insert_all([5, 2, 9, -1, -2, 10, -10, 30, 3])
+    expect(@heap.remove_top).to eq 30
+    expect(@heap.remove_top).to eq 10
+    expect(@heap.remove_top).to eq 9
+    expect(@heap.remove_top).to eq 5
+    expect(@heap.remove_top).to eq 3
+    expect(@heap.remove_top).to eq 2
+    expect(@heap.remove_top).to eq(-1)
+    expect(@heap.remove_top).to eq(-2)
+    expect(@heap.remove_top).to eq(-10)
+    expect(@heap.empty?).to be true
+    expect { @heap.top }.to raise_error 'Heap is empty'
+    expect { @heap.remove_top }.to raise_error 'Heap is empty'
 
     # Duplicate insertion.
-    heap.insert(3)
-    expect { heap.insert(3) }.to raise_error 'Element already exists in heap: 3'
-    expect(heap.size).to eq 1
+    @heap.insert(3)
+    expect { @heap.insert(3) }.to raise_error 'Element already exists in heap: 3'
+    expect(@heap.size).to eq 1
+  end
+
+  it 'should perform heapsort' do
+    @heap.insert_all([3, -1, 2000, 40, -123, 401, -9, 1005])
+
+    result = []
+    result.unshift(@heap.remove_top) until @heap.empty?
+    expect(result).to eq [-123, -9, -1, 3, 40, 401, 1005, 2000]
   end
 end
