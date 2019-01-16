@@ -1,6 +1,6 @@
 import { BinarySearchTree } from "../binary-search-tree";
 import { BinarySearchTreeA, BinarySearchTreeB } from "../tree.resources";
-import { BinaryHeap, BinaryHeapType } from "../heap";
+import { BinaryHeap, BinaryHeapType } from "../binary-heap";
 import { BinaryTree, BinaryTreeNode, BinaryNodeRelationship, NaryTreeNode } from "../tree";
 import { Trie } from "../trie";
 
