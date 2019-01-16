@@ -5,9 +5,9 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 30
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 30
 UncommunicativeMethodParamName:
   Enabled: false
 Metrics/LineLength:

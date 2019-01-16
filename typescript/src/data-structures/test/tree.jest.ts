@@ -177,7 +177,7 @@ describe("Tree", () => {
         expect(bst.delete(0)).toBeFalsy();
       });
 
-      it("should find only elements that exist", () => {
+      it("should only find elements that exist", () => {
         // Tree is empty.
         expect(bst.search(123)).toBeFalsy();
 

@@ -107,13 +107,13 @@ export abstract class BinaryTree<T> extends Tree<T> {
 
   /** Completes the sentence: b is a's _______. */
   protected getRelationship(a: BinaryTreeNode<T>, b: BinaryTreeNode<T>) {
-    if (a.left && a.left.value === b.value) {
+    if (a.left && a.left === b) {
       return BinaryNodeRelationship.LeftChild;
     }
-    if (a.right && a.right.value === b.value) {
+    if (a.right && a.right === b) {
       return BinaryNodeRelationship.RightChild;
     }
-    if (a.parent && a.parent.value === b.value) {
+    if (a.parent && a.parent === b) {
       return BinaryNodeRelationship.Parent;
     }
     return BinaryNodeRelationship.None;

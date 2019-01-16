@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 module DataStructures
   class LinkedListNode
     attr_accessor :value, :prev, :next

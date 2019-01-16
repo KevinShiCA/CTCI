@@ -70,18 +70,17 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
       }
     } else if (this.numberOfChildren(currentNode) === 1) { // Element has one child.
       // Replace with the left or right child, whichever exists.
-      const replacement = currentNode.left ? currentNode.left : currentNode.right;
+      const replacement = currentNode.left || currentNode.right;
       replacement.parent = currentNode.parent;
       if (this.isRoot(currentNode)) {
-        rootReplacement = currentNode.left ? currentNode.left : currentNode.right;
+        rootReplacement = currentNode.left || currentNode.right;
         rootReplacement.parent = undefined;
       } else if (this.getRelationship(currentNode.parent, currentNode) === BinaryNodeRelationship.LeftChild) {
         currentNode.parent.left = replacement;
       } else {
         currentNode.parent.right = replacement;
       }
-    } else {
-      // Element has two children.
+    } else { // Element has two children.
       // Find the minimum in the right subtree, replace the node with it.
       const minInRightSubtree = this.getMinInSubtree(currentNode.right);
       // The replacement node is either a leaf or has a right child.
@@ -156,7 +155,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     return -1;
   }
 
-  /** Gets the minimum node in the subtree rooted at a given node. */
+  /** Returns the minimum node in the subtree rooted at a given node. */
   private getMinInSubtree(node: BinaryTreeNode<T>) {
     let currentNode = node;
     while (currentNode.left) {

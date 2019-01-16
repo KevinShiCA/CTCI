@@ -7,6 +7,10 @@ describe 'Linked List' do
     @ll = DataStructures::LinkedList.new
   end
 
+  after :each do
+    @ll = nil
+  end
+
   it 'should append elements correctly' do
     @ll.append(1)
     @ll.append(2)
