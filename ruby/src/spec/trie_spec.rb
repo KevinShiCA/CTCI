@@ -13,8 +13,8 @@ describe 'Trie' do
   end
 
   it 'should insert words and validate them' do
-    @trie.insert('hello');
-    @trie.insert('hey');
+    @trie.insert('hello')
+    @trie.insert('hey')
     expect(@trie.validate_word('hello')).to be true
     expect(@trie.validate_word('hey')).to be true
     expect(@trie.validate_word('hell')).to be false
