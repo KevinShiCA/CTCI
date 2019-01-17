@@ -30,4 +30,24 @@ describe 'Trie' do
     expect(@trie.validate_prefix('dog')).to be true
     expect(@trie.validate_prefix('asdf')).to be false
   end
+
+  it 'should not allow duplicate words' do
+    @trie.insert('hello')
+    expect(@trie.insert('hello')).to be false
+    expect(@trie.insert('he')).to be true
+    expect(@trie.validate_word('he')).to be true
+    expect(@trie.validate_word('hello')).to be true
+    expect(@trie.validate_word('hel')).to be false
+    expect(@trie.validate_word('asdf')).to be false
+  end
+
+  it 'should not allow words with space characters' do
+    expect { @trie.insert('hello world') }.to raise_error 'Invalid word: hello world'
+    expect { @trie.insert('hello         world') }.to raise_error 'Invalid word: hello         world'
+    expect { @trie.insert('       helloworld     ') }.to raise_error 'Invalid word:        helloworld     '
+    expect { @trie.insert('   ') }.to raise_error 'Invalid word:    '
+    expect { @trie.insert("hello\tworld") }.to raise_error "Invalid word: hello\tworld"
+    expect { @trie.insert("hello\nworld") }.to raise_error "Invalid word: hello\nworld"
+    expect(@trie.empty?).to be true
+  end
 end
