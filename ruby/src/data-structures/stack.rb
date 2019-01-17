@@ -11,7 +11,7 @@ module DataStructures
     def peek
       return raise EMPTY_STACK_EXCEPTION if @elems.length.zero?
 
-      @elems[@elems.length - 1]
+      @elems.last
     end
 
     def push(value)

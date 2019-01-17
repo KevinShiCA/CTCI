@@ -22,6 +22,7 @@ module DataStructures
 
   class NaryTreeNode < TreeNode
     attr_accessor :children
+    attr_accessor :node_type # For dummy node labelling, if this property is blank then it is not a dummy.
 
     def initialize(value, parent, children)
       super(value, parent)
