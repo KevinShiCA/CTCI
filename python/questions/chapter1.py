@@ -11,3 +11,26 @@ def IsUnique(string):
         else:
             return False
     return True
+# IsPermutation returns true if one string is a permutation of the other.
+# Time: O(n)
+# Space: O(n)
+
+def IsPermutation(stringA, stringB):
+    charDict = {} 
+
+    for char in stringA:
+        if char not in charDict:
+            charDict[char] = 1
+        else:
+            charDict[char]+=1
+
+    for char in stringB:
+        if char in charDict:
+            if charDict[char] != 0:
+                charDict[char]-=1
+            else:
+                return False
+        else:
+            return False
+    return True
+        
