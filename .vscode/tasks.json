@@ -39,6 +39,19 @@
             "problemMatcher": []
         },
         {
+            "label": "Python unit tests",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "pytest",
+
+            "args": [
+                "--cov",
+                "python"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "Install TypeScript dependencies",
             "options": {
                 "cwd": "${workspaceFolder}/typescript"
@@ -53,6 +66,19 @@
             },
             "command": "bundle",
             "args": ["install"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Install Python dependencies",
+            "options": {
+                "cwd": "${workspaceFolder}/python"
+            },
+            "command": "pip",
+            "args": [
+                "install",
+                "-r",
+                "requirements.txt"
+            ],
             "problemMatcher": []
         },
         {
