@@ -4,3 +4,5 @@ dist/
 **/*.js
 **/*.js.map
 .DS_Store
+*.pyc
+*.coverage
