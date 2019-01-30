@@ -44,7 +44,6 @@
                 "cwd": "${workspaceFolder}"
             },
             "command": "pytest",
-
             "args": [
                 "--cov",
                 "python"
