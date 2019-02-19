@@ -28,3 +28,21 @@ def is_permutation(string_a, string_b):
             return False
         char_dict[char] -= 1
     return True
+
+# 1.4 Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome.
+# Assume that case and whitespace do not matter, and that there will be no leading or trailing whitespaces.
+# Assume that only letters of the english alphabet will be used.
+# Time: O(n) 
+# Space: O(n)
+def palindrome_permutation(string):
+    char_dict = {}
+    for char in string:
+        if char not in char_dict:
+            char_dict[char] = 1
+        else:
+            char_dict[char] += 1
+    odd_count = 0
+    for count in char_dict.values():
+        if count%2 == 1:
+            odd_count += 1
+    return odd_count in {0,1}
